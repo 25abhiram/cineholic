@@ -6,8 +6,8 @@ import com.movie.cineholic.Model.User;
 
 public interface UserService {
 User createUser(User user);
-User getUserById(long id);
+User getUserById(String id);
 List<User> getAllUsers();
-User updateUser(long id,User user);
-void deleteUser(long id);
+User updateUser(String id,User user);
+void deleteUser(String id);
 }

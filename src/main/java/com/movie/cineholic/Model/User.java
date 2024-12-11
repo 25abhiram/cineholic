@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class User {
     @Id
-    private long id;
+    private String id;
     private String username;
     private String email;
     private String password;

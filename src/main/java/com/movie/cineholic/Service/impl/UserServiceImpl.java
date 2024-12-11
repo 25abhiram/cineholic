@@ -15,21 +15,13 @@ public class UserServiceImpl implements UserService{
     @Autowired
     private UserRepository userRepository;
 
-    // public List<User> allUsers() {
-    //     return userRepository.findAll();
-    // }
-
-    // public Optional<User> singlUser(Long id){
-    //     return userRepository.findById(id);
-    // }
-
     @Override
     public User createUser(User user){
         return userRepository.save(user);
     }
 
     @Override
-    public User getUserById(long id){
+    public User getUserById(String id){
         Optional<User> user=userRepository.findById(id);
         return user.orElse(null);
     }
@@ -40,7 +32,7 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public User updateUser(long id,User user){
+    public User updateUser(String id,User user){
         if(userRepository.existsById(id)){
             user.setId(id);
             return userRepository.save(user);
@@ -49,7 +41,7 @@ public class UserServiceImpl implements UserService{
     }
     
     @Override
-    public void deleteUser(long id){
+    public void deleteUser(String id){
         userRepository.deleteById(id);
     }
 }

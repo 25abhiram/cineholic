@@ -30,7 +30,7 @@ public ResponseEntity<User> createUser(@RequestBody User user){
 }
 
 @GetMapping("/{id}")
-public ResponseEntity<User> getUserById(@PathVariable long id){
+public ResponseEntity<User> getUserById(@PathVariable String id){
     User user=this.userService.getUserById(id);
     return user!=null?ResponseEntity.ok(user):ResponseEntity.notFound().build();
 }
@@ -42,13 +42,13 @@ public ResponseEntity<List<User>> getAllUsers(){
 }
 
 @PutMapping
-public ResponseEntity<User> updateUser(@PathVariable long id,@RequestBody User user){
+public ResponseEntity<User> updateUser(@PathVariable String id,@RequestBody User user){
     User updatedUser=this.userService.updateUser(id, user);
     return updatedUser!=null?ResponseEntity.ok(updatedUser):ResponseEntity.notFound().build();
 }
 
 @DeleteMapping("/{id}")
-public ResponseEntity<Void> deleteUser(@PathVariable long id){
+public ResponseEntity<Void> deleteUser(@PathVariable String id){
     this.userService.deleteUser(id);
     return ResponseEntity.noContent().build();
 }

@@ -29,7 +29,7 @@ public ResponseEntity<User> createUser(@RequestBody User user){
     return ResponseEntity.ok(createdUser);
 }
 
-@GetMapping("/{id}")
+@GetMapping("/{userId}")
 public ResponseEntity<User> getUserById(@PathVariable String userId){
     User user=this.userService.getUserById(userId);
     return user!=null?ResponseEntity.ok(user):ResponseEntity.notFound().build();
@@ -41,13 +41,13 @@ public ResponseEntity<List<User>> getAllUsers(){
     return ResponseEntity.ok(users);
 }
 
-@PutMapping
+@PutMapping("/{userId}")
 public ResponseEntity<User> updateUser(@PathVariable String userId,@RequestBody User user){
     User updatedUser=this.userService.updateUser(userId, user);
     return updatedUser!=null?ResponseEntity.ok(updatedUser):ResponseEntity.notFound().build();
 }
 
-@DeleteMapping("/{id}")
+@DeleteMapping("/{userId}")
 public ResponseEntity<Void> deleteUser(@PathVariable String userId){
     this.userService.deleteUser(userId);
     return ResponseEntity.noContent().build();

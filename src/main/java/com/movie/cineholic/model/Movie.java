@@ -7,7 +7,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "movies")
-@Data // Lombok annotation to generate getters, setters, toString, equals, and hashCode
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class Movie {
@@ -19,51 +19,51 @@ public class Movie {
     private double averageRating;
     private String review;
 
-    public String getId() {
-        return id;
-    }
+    // public String getId() {
+    //     return id;
+    // }
 
-    public void setId(String id) {
-        this.id = id;
-    }
+    // public void setId(String id) {
+    //     this.id = id;
+    // }
 
-    public String getTitle() {
-        return title;
-    }
+    // public String getTitle() {
+    //     return title;
+    // }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
+    // public void setTitle(String title) {
+    //     this.title = title;
+    // }
 
-    public String getGenre() {
-        return genre;
-    }
+    // public String getGenre() {
+    //     return genre;
+    // }
 
-    public void setGenre(String genre) {
-        this.genre = genre;
-    }
+    // public void setGenre(String genre) {
+    //     this.genre = genre;
+    // }
 
-    public String getDescription() {
-        return description;
-    }
+    // public String getDescription() {
+    //     return description;
+    // }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
+    // public void setDescription(String description) {
+    //     this.description = description;
+    // }
 
-    public double getAverageRating() {
-        return averageRating;
-    }
+    // public double getAverageRating() {
+    //     return averageRating;
+    // }
 
-    public void setAverageRating(double averageRating) {
-        this.averageRating = averageRating;
-    }
+    // public void setAverageRating(double averageRating) {
+    //     this.averageRating = averageRating;
+    // }
 
-    public String getReview() {
-        return review;
-    }
+    // public String getReview() {
+    //     return review;
+    // }
 
-    public void setReview(String review) {
-        this.review = review;
-    }
+    // public void setReview(String review) {
+    //     this.review = review;
+    // }
 }

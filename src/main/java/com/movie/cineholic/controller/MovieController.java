@@ -35,7 +35,7 @@ public class MovieController {
     }
 
 
-    @PutMapping
+    @PutMapping("/{id}")
     public ResponseEntity<Movie> updateMovie(@PathVariable String id,@RequestBody Movie movie) {
         Movie updatedMovie=this.movieService.updateMovie(id, movie);
         return updatedMovie!=null?ResponseEntity.ok(updatedMovie):ResponseEntity.notFound().build();

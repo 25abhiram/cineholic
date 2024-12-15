@@ -1,17 +1,16 @@
 package com.movie.cineholic.controller;
 
-
 import com.movie.cineholic.model.Movie;
 import com.movie.cineholic.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("/movies")
 public class MovieController {
     @Autowired
     private MovieService movieService;
@@ -28,22 +27,47 @@ public class MovieController {
         return ResponseEntity.ok(addedMovie);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Movie> getMovieById(@PathVariable String id){
-        Movie movie=this.movieService.getMovieById(id);
+    @GetMapping("/{movieId}")
+    public ResponseEntity<Movie> getMovieById(@PathVariable String movieId){
+        Movie movie=this.movieService.getMovieById(movieId);
         return movie!=null?ResponseEntity.ok(movie):ResponseEntity.notFound().build();
     }
 
 
-    @PutMapping("/{id}")
-    public ResponseEntity<Movie> updateMovie(@PathVariable String id,@RequestBody Movie movie) {
-        Movie updatedMovie=this.movieService.updateMovie(id, movie);
+    @PutMapping("/{movieId}")
+    public ResponseEntity<Movie> updateMovie(@PathVariable String movieId,@RequestBody Movie movie) {
+        Movie updatedMovie=this.movieService.updateMovie(movieId, movie);
         return updatedMovie!=null?ResponseEntity.ok(updatedMovie):ResponseEntity.notFound().build();
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteMovie(@PathVariable String id) {
-       this.movieService.deleteMovie(id);
+    @DeleteMapping("/{movieId}")
+    public ResponseEntity<Void> deleteMovie(@PathVariable String movieId) {
+       this.movieService.deleteMovie(movieId);
        return ResponseEntity.noContent().build();
     }
+
+    @GetMapping("/genre/{genre}")
+    public ResponseEntity<List<Movie>> getMoviesByGenre(@PathVariable String genre) {
+        List<Movie> movies = movieService.getMoviesByGenre(genre);
+
+        return (movies != null && !movies.isEmpty())
+            ? ResponseEntity.ok(movies)
+            : ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+    }
+
+    @GetMapping("/title/{title}")
+    public ResponseEntity<List<Movie>> getMoviesByTitle(@PathVariable String title) {
+        List<Movie> movies = movieService.getMoviesByTitle(title);
+
+        return (movies != null && !movies.isEmpty())
+            ? ResponseEntity.ok(movies)
+            : ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+    }
+
+    @GetMapping("/rating/above")
+    public ResponseEntity<List<Movie>> getMoviesWithRatingAbove(@RequestParam double rating) {
+        List<Movie> movies = movieService.getMoviesWithRatingAbove(rating);
+        return movies.isEmpty() ? ResponseEntity.notFound().build() : ResponseEntity.ok(movies);
+    }
+
 }

@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
-@RequestMapping("/reviewsadd")
+@RequestMapping("/reviews")
 public class ReviewController {
 
     @Autowired

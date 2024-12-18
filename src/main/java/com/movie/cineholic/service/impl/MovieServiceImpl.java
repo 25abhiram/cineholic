@@ -58,6 +58,6 @@ public class MovieServiceImpl implements MovieService {
 @Override
 public List<Movie> getMoviesWithRatingAbove(double rating) {
     return movieRepository.findByAverageRatingGreaterThan(rating);
-}
+ }
 
 }

@@ -1,5 +1,4 @@
 package com.movie.cineholic.service.impl;
-import com.movie.cineholic.model.Movie;
 import com.movie.cineholic.model.Review;
 import com.movie.cineholic.repository.ReviewRepository;
 import com.movie.cineholic.service.ReviewService;

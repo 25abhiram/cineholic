@@ -13,5 +13,6 @@ public interface MovieRepository extends MongoRepository<Movie, String> {
     List<Movie> findByGenre(String genre); 
     List<Movie> findByTitle(String title);
     List<Movie> findByAverageRatingGreaterThan(double rating);  
+    
 }
 

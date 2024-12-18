@@ -17,8 +17,8 @@ public class Recommendation {
 
     @Id
     private String recommendationId; 
-     private String userId;           
-   private List<String> recommendedMovies;  
+    private String userId;           
+    private List<String> recommendedMovies;  
 
     
 }

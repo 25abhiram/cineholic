@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.movie.cineholic.Model.Theatre;
 
 @Repository
-public interface TheatreRepository extends MongoRepository<Theatre,String>{
+public interface TheatreRepository extends MongoRepository<Theatre, String> {
 
 }

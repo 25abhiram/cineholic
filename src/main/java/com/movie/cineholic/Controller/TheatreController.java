@@ -20,35 +20,35 @@ import com.movie.cineholic.Service.TheatreService;
 @RequestMapping("/api/theatres")
 public class TheatreController {
     @Autowired
-private TheatreService theatreService;
+    private TheatreService theatreService;
 
-@PostMapping
-public ResponseEntity<Theatre> createTheatre(@RequestBody Theatre theatre){
-    Theatre createdTheatre=this.theatreService.createTheatre(theatre);
-    return ResponseEntity.ok(createdTheatre);
-}
+    @PostMapping
+    public ResponseEntity<Theatre> createTheatre(@RequestBody Theatre theatre) {
+        Theatre createdTheatre = this.theatreService.createTheatre(theatre);
+        return ResponseEntity.ok(createdTheatre);
+    }
 
-@GetMapping("/{theatreId}")
-public ResponseEntity<Theatre> getTheatreById(@PathVariable String theatreId){
-    Theatre theatre=this.theatreService.getTheatreById(theatreId);
-    return theatre!=null?ResponseEntity.ok(theatre):ResponseEntity.notFound().build();
-}
+    @GetMapping("/{theatreId}")
+    public ResponseEntity<Theatre> getTheatreById(@PathVariable String theatreId) {
+        Theatre theatre = this.theatreService.getTheatreById(theatreId);
+        return theatre != null ? ResponseEntity.ok(theatre) : ResponseEntity.notFound().build();
+    }
 
-@GetMapping
-public ResponseEntity<List<Theatre>> getAllTheatres(){
-    List<Theatre> theatres=this.theatreService.getAllTheatres();
-    return ResponseEntity.ok(theatres);
-}
+    @GetMapping
+    public ResponseEntity<List<Theatre>> getAllTheatres() {
+        List<Theatre> theatres = this.theatreService.getAllTheatres();
+        return ResponseEntity.ok(theatres);
+    }
 
-@PutMapping("/{theatreId}")
-public ResponseEntity<Theatre> updateTheatre(@PathVariable String theatreId,@RequestBody Theatre theatre){
-    Theatre updateTheatre=this.theatreService.updateTheatre(theatreId, theatre);
-    return updateTheatre!=null?ResponseEntity.ok(theatre):ResponseEntity.notFound().build();
-}
+    @PutMapping("/{theatreId}")
+    public ResponseEntity<Theatre> updateTheatre(@PathVariable String theatreId, @RequestBody Theatre theatre) {
+        Theatre updateTheatre = this.theatreService.updateTheatre(theatreId, theatre);
+        return updateTheatre != null ? ResponseEntity.ok(theatre) : ResponseEntity.notFound().build();
+    }
 
-@DeleteMapping("/{theatreId}")
-public ResponseEntity<Void> deleteTheatre(@PathVariable String theatreId){
-    this.theatreService.deleteTheatre(theatreId);
-    return ResponseEntity.noContent().build();
-}
+    @DeleteMapping("/{theatreId}")
+    public ResponseEntity<Void> deleteTheatre(@PathVariable String theatreId) {
+        this.theatreService.deleteTheatre(theatreId);
+        return ResponseEntity.noContent().build();
+    }
 }

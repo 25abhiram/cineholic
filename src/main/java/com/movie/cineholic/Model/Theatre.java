@@ -6,12 +6,13 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Document(collection="theatres")
+@Document(collection = "theatres")
 public class Theatre {
-   @Id
+    @Id
     private String theatreId;
     private String theatreName;
     private String location;

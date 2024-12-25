@@ -11,9 +11,10 @@ import com.movie.cineholic.Repository.TheatreRepository;
 import com.movie.cineholic.Service.TheatreService;
 
 @Service
-public class TheatreServiceImpl implements TheatreService{
-@Autowired
+public class TheatreServiceImpl implements TheatreService {
+    @Autowired
     private TheatreRepository theatreRepository;
+
     @Override
     public Theatre createTheatre(Theatre theatre) {
         return theatreRepository.save(theatre);
@@ -21,7 +22,7 @@ public class TheatreServiceImpl implements TheatreService{
 
     @Override
     public Theatre getTheatreById(String theatreId) {
-        Optional<Theatre> theatre=theatreRepository.findById(theatreId);
+        Optional<Theatre> theatre = theatreRepository.findById(theatreId);
         return theatre.orElse(null);
     }
 
@@ -34,7 +35,7 @@ public class TheatreServiceImpl implements TheatreService{
     public Theatre updateTheatre(String theatreId, Theatre theatre) {
         if (theatreRepository.existsById(theatreId)) {
             theatre.setTheatreId(theatreId);
-            return theatreRepository.save(theatre);            
+            return theatreRepository.save(theatre);
         }
         return null;
     }

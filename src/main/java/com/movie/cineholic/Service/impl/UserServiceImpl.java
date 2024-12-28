@@ -14,7 +14,7 @@ import com.movie.cineholic.Repository.UserRepository;
 import com.movie.cineholic.Service.UserService;
 
 @Service
-public class UserServiceImpl implements UserService,UserDetailsService {
+public class UserServiceImpl implements UserService, UserDetailsService {
     @Autowired
     private UserRepository userRepository;
 
@@ -50,21 +50,29 @@ public class UserServiceImpl implements UserService,UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'loadUserByUsername'");
+        Optional<User> user = userRepository.findByUsername(username.toLowerCase());
+        if (!user.isPresent()) {
+            throw new UsernameNotFoundException(username);
+        } else {
+            return org.springframework.security.core.userdetails.User.builder()
+                    .username(user.get().getUsername())
+                    .password(user.get().getPassword())
+                    .build();
+        }
     }
 }
-    // @Override
-    // public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-    //     Optional<User> user = userRepository.findByUsername(username);
-    //     if (user.isPresent()) {
-    //         var userObj = user.get();
-    //         return org.springframework.security.core.userdetails.User.builder()
-    //                 .username(userObj.getUsername())
-    //                 .password(userObj.getPassword())
-    //                 .build();
+// @Override
+// public UserDetails loadUserByUsername(String username) throws
+// UsernameNotFoundException {
+// Optional<User> user = userRepository.findByUsername(username);
+// if (user.isPresent()) {
+// var userObj = user.get();
+// return org.springframework.security.core.userdetails.User.builder()
+// .username(userObj.getUsername())
+// .password(userObj.getPassword())
+// .build();
 
-    //     } else {
-    //         throw new UsernameNotFoundException(username);
-    //     }
-    // }
+// } else {
+// throw new UsernameNotFoundException(username);
+// }
+// }

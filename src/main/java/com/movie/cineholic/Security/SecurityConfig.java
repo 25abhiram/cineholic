@@ -1,59 +1,56 @@
 package com.movie.cineholic.Security;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import java.util.ArrayList;
+import java.util.Collection;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.authentication.AuthenticationProvider;
-import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
-import com.movie.cineholic.Service.impl.UserServiceImpl;
-
-import lombok.AllArgsConstructor;
-
 @Configuration
-@AllArgsConstructor
 @EnableWebSecurity
 public class SecurityConfig {
-    @Autowired
-    private final UserServiceImpl userServiceImpl;
-
     @Bean
-    public UserDetailsService userDetailsService(){
-        return userServiceImpl;
-    }
-
-    @Bean
-    public AuthenticationProvider authenticationProvider(){
-        DaoAuthenticationProvider provider=new DaoAuthenticationProvider();
-        provider.setUserDetailsService(userServiceImpl);
-        provider.setPasswordEncoder(passwordEncoder());
-        return provider;
-    }
-
-    @Bean
-    public PasswordEncoder passwordEncoder(){
-        return new BCryptPasswordEncoder();
-    }
-
-    @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
+    public SecurityFilterChain defauFilterChain(HttpSecurity httpSecurity) throws Exception {
         return httpSecurity
-        .csrf(AbstractHttpConfigurer::disable)
-                .formLogin(httpForm -> {
-                    httpForm
-                            .loginPage("/req/login").permitAll();
-                })
-                .authorizeHttpRequests(registry -> {
-                    registry.requestMatchers("/req/signup", "/css/**", "/js/**").permitAll();
-                    registry.anyRequest().authenticated();
-                })
+                .csrf(csrf -> csrf.disable())
+                .authorizeHttpRequests(
+                        auth -> auth.requestMatchers("/register", "/error").permitAll().anyRequest().authenticated())
+                .httpBasic(Customizer.withDefaults())
+                .formLogin(Customizer.withDefaults())
                 .build();
+    }
+
+    // @Bean
+    // public UserDetailsService userDetailsService() {
+    // Collection<UserDetails> users = new ArrayList<>();
+    // UserDetails userDetails =
+    // org.springframework.security.core.userdetails.User.withDefaultPasswordEncoder()
+    // .username("user")
+    // .password("password")
+    // .roles("USER")
+    // .build();
+    // users.add(userDetails);
+    // UserDetails userDetails1 =
+    // org.springframework.security.core.userdetails.User.withDefaultPasswordEncoder()
+    // .username("admin")
+    // .password("admin")
+    // .roles("USER")
+    // .build();
+    // users.add(userDetails1);
+    // return new InMemoryUserDetailsManager(users);
+    // }
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
     }
 }

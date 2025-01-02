@@ -1,7 +1,7 @@
-package com.movie.cineholic.Service;
+package com.movie.cineholic.ervice;
 import java.util.List;
 
-import com.movie.cineholic.Model.Review;
+import com.movie.cineholic.odel.Review;
 
 public interface ReviewService {
     Review addReview(Review review);

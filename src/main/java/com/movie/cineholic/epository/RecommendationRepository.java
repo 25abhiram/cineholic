@@ -2,7 +2,7 @@ package com.movie.cineholic.epository;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 
-import com.movie.cineholic.Model.Recommendation;
+import com.movie.cineholic.odel.Recommendation;
 
 import java.util.List;
 

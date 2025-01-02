@@ -1,4 +1,4 @@
-package com.movie.cineholic.Model;
+package com.movie.cineholic.odel;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

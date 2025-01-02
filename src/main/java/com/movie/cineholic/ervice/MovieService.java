@@ -1,8 +1,8 @@
-package com.movie.cineholic.Service;
+package com.movie.cineholic.ervice;
 
 import java.util.List;
 
-import com.movie.cineholic.Model.Movie;
+import com.movie.cineholic.odel.Movie;
 
 public interface MovieService {
     List<Movie> getAllMovies();

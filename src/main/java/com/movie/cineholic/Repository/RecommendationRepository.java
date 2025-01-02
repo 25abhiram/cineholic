@@ -1,8 +1,8 @@
-package com.movie.cineholic.epository;
+package com.movie.cineholic.Repository;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 
-import com.movie.cineholic.odel.Recommendation;
+import com.movie.cineholic.Model.Recommendation;
 
 import java.util.List;
 

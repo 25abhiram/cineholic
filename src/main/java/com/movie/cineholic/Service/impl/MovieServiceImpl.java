@@ -1,8 +1,8 @@
-package com.movie.cineholic.ervice.impl;
+package com.movie.cineholic.Service.impl;
 
-import com.movie.cineholic.epository.MovieRepository;
-import com.movie.cineholic.ervice.MovieService;
-import com.movie.cineholic.odel.Movie;
+import com.movie.cineholic.Model.Movie;
+import com.movie.cineholic.Repository.MovieRepository;
+import com.movie.cineholic.Service.MovieService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

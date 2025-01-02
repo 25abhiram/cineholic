@@ -1,7 +1,7 @@
 package com.movie.cineholic.Controller;
 
-import com.movie.cineholic.ervice.RecommendationService;
-import com.movie.cineholic.odel.Recommendation;
+import com.movie.cineholic.Model.Recommendation;
+import com.movie.cineholic.Service.RecommendationService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

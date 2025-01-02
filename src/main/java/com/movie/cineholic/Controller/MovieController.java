@@ -1,7 +1,7 @@
 package com.movie.cineholic.Controller;
 
-import com.movie.cineholic.ervice.MovieService;
-import com.movie.cineholic.odel.Movie;
+import com.movie.cineholic.Model.Movie;
+import com.movie.cineholic.Service.MovieService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

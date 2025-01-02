@@ -1,7 +1,7 @@
-package com.movie.cineholic.ervice.impl;
-import com.movie.cineholic.epository.ReviewRepository;
-import com.movie.cineholic.ervice.ReviewService;
-import com.movie.cineholic.odel.Review;
+package com.movie.cineholic.Service.impl;
+import com.movie.cineholic.Model.Review;
+import com.movie.cineholic.Repository.ReviewRepository;
+import com.movie.cineholic.Service.ReviewService;
 
 import org.springframework.stereotype.Service;
 

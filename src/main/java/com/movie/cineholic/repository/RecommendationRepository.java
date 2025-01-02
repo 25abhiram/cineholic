@@ -1,7 +1,9 @@
-package com.movie.cineholic.repository;
+package com.movie.cineholic.Repository;
 
-import com.movie.cineholic.model.Recommendation;
 import org.springframework.data.mongodb.repository.MongoRepository;
+
+import com.movie.cineholic.Model.Recommendation;
+
 import java.util.List;
 
 public interface RecommendationRepository extends MongoRepository<Recommendation, String> {

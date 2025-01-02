@@ -1,11 +1,11 @@
-package com.movie.cineholic.repository;
-
-import com.movie.cineholic.model.Movie;
+package com.movie.cineholic.Repository;
 
 import java.util.List;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
+
+import com.movie.cineholic.Model.Movie;
 
 @Repository
 public interface MovieRepository extends MongoRepository<Movie, String> {

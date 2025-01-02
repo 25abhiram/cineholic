@@ -1,7 +1,8 @@
-package com.movie.cineholic.controller;
+package com.movie.cineholic.Controller;
 
-import com.movie.cineholic.model.Review;
-import com.movie.cineholic.service.ReviewService;
+import com.movie.cineholic.Model.Review;
+import com.movie.cineholic.Service.ReviewService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

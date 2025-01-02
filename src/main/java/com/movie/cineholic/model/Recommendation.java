@@ -1,4 +1,4 @@
-package com.movie.cineholic.model;
+package com.movie.cineholic.Model;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;

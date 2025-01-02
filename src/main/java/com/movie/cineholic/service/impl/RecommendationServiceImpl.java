@@ -1,10 +1,11 @@
-package com.movie.cineholic.service.impl;
+package com.movie.cineholic.Service.impl;
 
-import com.movie.cineholic.model.Movie;
-import com.movie.cineholic.model.Recommendation;
-import com.movie.cineholic.repository.MovieRepository;
-import com.movie.cineholic.repository.RecommendationRepository;
-import com.movie.cineholic.service.RecommendationService;
+import com.movie.cineholic.Model.Movie;
+import com.movie.cineholic.Model.Recommendation;
+import com.movie.cineholic.Repository.MovieRepository;
+import com.movie.cineholic.Repository.RecommendationRepository;
+import com.movie.cineholic.Service.RecommendationService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

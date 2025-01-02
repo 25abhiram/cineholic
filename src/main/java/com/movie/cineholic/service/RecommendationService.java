@@ -1,7 +1,8 @@
-package com.movie.cineholic.service;
+package com.movie.cineholic.Service;
 
-import com.movie.cineholic.model.Recommendation;
 import java.util.List;
+
+import com.movie.cineholic.Model.Recommendation;
 
 public interface RecommendationService {
     Recommendation addRecommendation(Recommendation recommendation);

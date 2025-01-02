@@ -1,4 +1,4 @@
-package com.movie.cineholic.Repository;
+package com.movie.cineholic.epository;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 

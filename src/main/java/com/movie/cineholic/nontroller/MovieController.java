@@ -1,4 +1,4 @@
-package com.movie.cineholic.Controller;
+package com.movie.cineholic.nontroller;
 
 import com.movie.cineholic.Model.Movie;
 import com.movie.cineholic.Service.MovieService;

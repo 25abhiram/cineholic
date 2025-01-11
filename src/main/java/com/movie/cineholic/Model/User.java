@@ -40,4 +40,12 @@ public class User {
 
     private String[] watchlist;
     private String[] preferences;
+
+    public User(String username, String email, String password, String[] watchlist, String[] preferences) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.watchlist=watchlist;
+        this.preferences=preferences;
+      }
 }

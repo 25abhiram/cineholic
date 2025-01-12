@@ -101,6 +101,7 @@ public class WebSecurityConfig {
                     // Allow public access to auth endpoints
                     .requestMatchers("/api/test/**").permitAll()
                     // Allow public access to test endpoints
+                    .requestMatchers("/v2/api-docs","/v3/api-docs/**","/swagger-ui/**","/swagger-resources/**","/webjars/**").permitAll()
                     .anyRequest().authenticated());
     // Require authentication for any other request
 

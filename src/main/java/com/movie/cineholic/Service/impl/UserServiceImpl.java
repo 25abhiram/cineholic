@@ -4,9 +4,6 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.movie.cineholic.Model.User;
@@ -14,7 +11,7 @@ import com.movie.cineholic.Repository.UserRepository;
 import com.movie.cineholic.Service.UserService;
 
 @Service
-public class UserServiceImpl implements UserService, UserDetailsService {
+public class UserServiceImpl implements UserService{
     @Autowired
     private UserRepository userRepository;
 
@@ -48,31 +45,4 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         userRepository.deleteById(userId);
     }
 
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Optional<User> user = userRepository.findByUsername(username.toLowerCase());
-        if (!user.isPresent()) {
-            throw new UsernameNotFoundException(username);
-        } else {
-            return org.springframework.security.core.userdetails.User.builder()
-                    .username(user.get().getUsername())
-                    .password(user.get().getPassword())
-                    .build();
-        }
-    }
 }
-// @Override
-// public UserDetails loadUserByUsername(String username) throws
-// UsernameNotFoundException {
-// Optional<User> user = userRepository.findByUsername(username);
-// if (user.isPresent()) {
-// var userObj = user.get();
-// return org.springframework.security.core.userdetails.User.builder()
-// .username(userObj.getUsername())
-// .password(userObj.getPassword())
-// .build();
-
-// } else {
-// throw new UsernameNotFoundException(username);
-// }
-// }

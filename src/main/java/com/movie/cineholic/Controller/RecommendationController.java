@@ -36,7 +36,7 @@ public class RecommendationController {
         // Fetch the user details
         User user = userService.getUserById(userId);
         if (user == null) {
-            return ResponseEntity.notFound().build(); // User not found
+            return ResponseEntity.notFound().build();
         }
 
         String[] genrePreferences = user.getPreferences(); // User's preferred genres

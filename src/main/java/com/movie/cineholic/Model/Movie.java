@@ -21,6 +21,7 @@ public class Movie {
     private String description;
     private double averageRating;
     private List<String> reviews;
+    private String poster_path;
 
 
 }

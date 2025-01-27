@@ -53,7 +53,7 @@ public class MovieServiceImpl implements MovieService {
 
 @Override
     public List<Movie> getMoviesByTitle(String title) {
-    return movieRepository.findByTitle(title);
+    return movieRepository.findByTitleContainingIgnoreCase(title);
 }
 
 @Override

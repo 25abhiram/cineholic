@@ -17,6 +17,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder; // Impo
 import org.springframework.security.crypto.password.PasswordEncoder; // Import for password encoder interface
 import org.springframework.security.web.SecurityFilterChain; // Import for security filter chain
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter; // Import for username/password authentication filter
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /**
  * Security configuration class to set up Spring Security.
@@ -114,4 +116,16 @@ public class WebSecurityConfig {
 
     return http.build(); // Build and return the security filter chain
   }
+
+  @Bean
+  public WebMvcConfigurer corsConfigurer() {
+        return new WebMvcConfigurer() {
+            @Override
+            public void addCorsMappings(CorsRegistry registry) {
+                registry.addMapping("/**")
+                        .allowedOrigins("http://localhost:3000")
+                        .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS");
+            }
+        };
+    }
 }

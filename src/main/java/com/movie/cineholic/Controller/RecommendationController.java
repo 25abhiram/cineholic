@@ -46,9 +46,9 @@ public class RecommendationController {
 
         // Collect top-rated movies for each genre preference
         List<Movie> recommendedMovies = new ArrayList<>();
-        for (String genre : genrePreferences) {
+        for (String genres : genrePreferences) {
             recommendedMovies.addAll(
-                    movieService.getMoviesByGenre(genre).stream()
+                    movieService.getMoviesByGenres(genres).stream()
                             .sorted((m1, m2) -> Double.compare(m2.getAverageRating(), m1.getAverageRating()))
                             .limit(3) // Limit to top 3 movies per genre
                             .collect(Collectors.toList())

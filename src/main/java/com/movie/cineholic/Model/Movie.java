@@ -17,11 +17,18 @@ public class Movie {
     @Id
     private String movieId;
     private String title;
-    private String genre;
+    private String releaseDate;
+    private String trailerLink;
+    private String poster_path;
+    private String runTime;
+    private String budget;
+    private String revenue;
+    private List<String> genres;
     private String description;
     private double averageRating;
     private List<String> reviews;
-    private String poster_path;
+
+
 
 
 }

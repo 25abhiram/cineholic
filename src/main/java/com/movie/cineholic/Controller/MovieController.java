@@ -47,9 +47,9 @@ public class MovieController {
        return ResponseEntity.noContent().build();
     }
 
-    @GetMapping("/genre/{genre}")
-    public ResponseEntity<List<Movie>> getMoviesByGenre(@PathVariable String genre) {
-        List<Movie> movies = movieService.getMoviesByGenre(genre);
+    @GetMapping("/genres/{genres}")
+    public ResponseEntity<List<Movie>> getMoviesByGenres(@PathVariable String genres) {
+        List<Movie> movies = movieService.getMoviesByGenres(genres);
 
         return (movies != null && !movies.isEmpty())
             ? ResponseEntity.ok(movies)

@@ -1,6 +1,7 @@
 package com.movie.cineholic.Model;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.springframework.data.annotation.Id;
@@ -38,7 +39,8 @@ public class User {
     @DBRef
     private Set<Role> roles=new HashSet<>();
 
-    private String[] watchlist;
+    @DBRef
+    private List<Movie> watchlist;
     private String[] preferences;
 
     public User(String username, String email, String password) {

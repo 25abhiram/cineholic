@@ -20,9 +20,11 @@ public class Movie {
     private String title;
     private String releaseDate;
     private String trailerLink; //youtube link of movie trailer
-    private String poster; //images from website
+    private String poster_path; //images from website
     private List<String> genres;
-    private List<String> backdrops; //images of the movie from websites
+    private String runtime;
+    private String budget;
+    private String revenue;
     private String description;
     private double averageRating;
     @DocumentReference

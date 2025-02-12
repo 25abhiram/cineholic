@@ -11,14 +11,14 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
-@CrossOrigin(origins="http://localhost:5174")
+@CrossOrigin(origins="http://localhost:5173")
 @RestController
 @RequestMapping("/api/v1/movies")
 public class MovieController {
     @Autowired
     private MovieService movieService;
 
-    @GetMapping
+    @GetMapping("/all")
     public ResponseEntity<List<Movie>> getAllMovies() {
         List<Movie> movies=this.movieService.getAllMovies();
         return ResponseEntity.ok(movies);

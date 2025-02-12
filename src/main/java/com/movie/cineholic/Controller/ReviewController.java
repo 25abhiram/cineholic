@@ -1,26 +1,28 @@
 package com.movie.cineholic.Controller;
 
 import com.movie.cineholic.Model.Review;
+import com.movie.cineholic.Payload.Request.ReviewRequest;
 import com.movie.cineholic.Service.ReviewService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:5173")
 @RestController
-@RequestMapping("/reviews")
+@RequestMapping("/api/v1/reviews")
 public class ReviewController {
 
     @Autowired
     private ReviewService reviewService;
 
-    @PostMapping
-    public ResponseEntity<Review> addReview(@RequestBody Review review) {
-        review.setTimeStamp(LocalDateTime.now());
-        return ResponseEntity.ok(reviewService.addReview(review));
+    @PostMapping("/create")
+    public ResponseEntity<Review> addReview(@RequestBody ReviewRequest reviewRequest) {
+        return new ResponseEntity<>(reviewService.addReview(reviewRequest.getMovieId(),reviewRequest.getRating(),reviewRequest.getReviewText()),HttpStatus.CREATED);
     }
 
     @PutMapping("/{reviewId}")

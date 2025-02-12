@@ -21,5 +21,11 @@ public class Review {
     private String userId;   
     private double rating;  
     private String reviewText; 
-    private LocalDateTime timeStamp; 
+    private LocalDateTime timeStamp = LocalDateTime.now();
+
+    public Review(String movieId, double rating,String reviewText){
+        this.movieId=movieId;
+        this.rating=rating;
+        this.reviewText=reviewText;
+    }
 }

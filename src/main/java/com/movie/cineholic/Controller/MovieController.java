@@ -9,14 +9,16 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
+@CrossOrigin(origins="http://localhost:5173")
 @RestController
-@RequestMapping("/movies")
+@RequestMapping("/api/v1/movies")
 public class MovieController {
     @Autowired
     private MovieService movieService;
 
-    @GetMapping
+    @GetMapping("/all")
     public ResponseEntity<List<Movie>> getAllMovies() {
         List<Movie> movies=this.movieService.getAllMovies();
         return ResponseEntity.ok(movies);
@@ -29,9 +31,9 @@ public class MovieController {
     }
 
     @GetMapping("/{movieId}")
-    public ResponseEntity<Movie> getMovieById(@PathVariable String movieId){
-        Movie movie=this.movieService.getMovieById(movieId);
-        return movie!=null?ResponseEntity.ok(movie):ResponseEntity.notFound().build();
+    public ResponseEntity<Optional<Movie>> getMovieById(@PathVariable String movieId){
+        Optional<Movie> movie=this.movieService.getMovieById(movieId);
+        return ResponseEntity.ok(movie);
     }
 
 

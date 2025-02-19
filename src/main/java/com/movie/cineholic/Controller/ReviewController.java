@@ -25,7 +25,7 @@ public class ReviewController {
     @PostMapping("/create")
     @PreAuthorize("isAuthenticated()")
     public ResponseEntity<Review> addReview(@RequestBody ReviewRequest reviewRequest) {
-        return new ResponseEntity<>(reviewService.addReview(reviewRequest.getMovieId(),reviewRequest.getUserId(),reviewRequest.getRating(),reviewRequest.getReviewText()),HttpStatus.CREATED);
+        return new ResponseEntity<>(reviewService.addReview(reviewRequest.getMovieId(),reviewRequest.getUserId(),reviewRequest.getUsername(),reviewRequest.getRating(),reviewRequest.getReviewText()),HttpStatus.CREATED);
     }
 
     @PutMapping("/{reviewId}")

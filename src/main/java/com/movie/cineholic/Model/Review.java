@@ -19,13 +19,15 @@ public class Review {
     private String reviewId;
     private String movieId;
     private String userId;
+    private String username;
     private double rating;
     private String reviewText;
     private LocalDateTime timeStamp = LocalDateTime.now();
 
-    public Review(String movieId, String userId, double rating, String reviewText) {
+    public Review(String movieId, String userId, String username, double rating, String reviewText) {
         this.movieId = movieId;
         this.userId = userId;
+        this.username = username;
         this.rating = rating;
         this.reviewText = reviewText;
     }

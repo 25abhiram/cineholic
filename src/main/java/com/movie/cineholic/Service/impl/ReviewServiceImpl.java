@@ -34,13 +34,13 @@ public class ReviewServiceImpl implements ReviewService {
     // }
 
     @Override
-    public Review addReview(String movieId, String userId, double rating, String reviewText) {
+    public Review addReview(String movieId, String userId,String username, double rating, String reviewText) {
         // Check if the user has already reviewed this movie
         Optional<Review> existingReview = reviewRepository.findByMovieIdAndUserId(movieId, userId);
         if (existingReview.isPresent()) {
             return null; // User has already reviewed the movie
         }
-        Review review = new Review(movieId, userId, rating, reviewText);
+        Review review = new Review(movieId, userId,username, rating, reviewText);
         reviewRepository.insert(review);
 
         // Update the review list for the movie

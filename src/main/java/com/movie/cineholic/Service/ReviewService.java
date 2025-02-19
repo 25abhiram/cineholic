@@ -6,7 +6,7 @@ import java.util.Optional;
 import com.movie.cineholic.Model.Review;
 
 public interface ReviewService {
-    Review addReview(String movieId, String userId, double rating, String reviewText);
+    Review addReview(String movieId, String userId,String username, double rating, String reviewText);
 
     Review updateReview(String reviewId, Review updatedReview);
 

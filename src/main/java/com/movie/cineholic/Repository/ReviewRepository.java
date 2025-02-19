@@ -6,9 +6,11 @@ import org.springframework.stereotype.Repository;
 import com.movie.cineholic.Model.Review;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface ReviewRepository extends MongoRepository<Review, String> {
     List<Review> findByMovieId(String movieId); // Find reviews by movie
     List<Review> findByUserId(String userId);   // Find reviews by user
+    Optional<Review> findByMovieIdAndUserId(String movieId, String userId);
 }

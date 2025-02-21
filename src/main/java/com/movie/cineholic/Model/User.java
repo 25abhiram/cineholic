@@ -41,7 +41,7 @@ public class User {
 
     @DBRef
     private List<Movie> watchlist;
-    private String[] preferences;
+    private List<String> preferences;
 
     public User(String username, String email, String password) {
         this.username = username;

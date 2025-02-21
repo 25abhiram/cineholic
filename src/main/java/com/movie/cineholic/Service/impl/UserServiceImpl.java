@@ -95,4 +95,17 @@ public class UserServiceImpl implements UserService {
         }
         return null;
     }
+
+    @Override
+    public User updateUserPreferences(String userId, List<String> preferences) {
+        Optional<User> optionalUser = userRepository.findById(userId);
+
+        if (optionalUser.isPresent()) {
+            User user = optionalUser.get();
+            user.setPreferences(preferences);
+            return userRepository.save(user);
+        }
+        return null;
+    }
+
 }

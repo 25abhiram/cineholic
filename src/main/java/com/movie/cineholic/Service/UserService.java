@@ -21,4 +21,7 @@ public interface UserService {
     List<Movie> getWatchlist(String userId);
 
     User removeMovieFromWatchlist(String userId, String movieId);
+
+    User updateUserPreferences(String userId, List<String> preferences);
+
 }

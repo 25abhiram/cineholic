@@ -7,10 +7,12 @@ import com.movie.cineholic.Service.ReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @CrossOrigin(origins = "http://localhost:5173")
 @RestController
@@ -21,17 +23,20 @@ public class ReviewController {
     private ReviewService reviewService;
 
     @PostMapping("/create")
+    @PreAuthorize("isAuthenticated()")
     public ResponseEntity<Review> addReview(@RequestBody ReviewRequest reviewRequest) {
-        return new ResponseEntity<>(reviewService.addReview(reviewRequest.getMovieId(),reviewRequest.getRating(),reviewRequest.getReviewText()),HttpStatus.CREATED);
+        return new ResponseEntity<>(reviewService.addReview(reviewRequest.getMovieId(),reviewRequest.getUserId(),reviewRequest.getUsername(),reviewRequest.getRating(),reviewRequest.getReviewText()),HttpStatus.CREATED);
     }
 
     @PutMapping("/{reviewId}")
+    @PreAuthorize("isAuthenticated()")
     public ResponseEntity<Review> updateReview(@PathVariable String reviewId, @RequestBody Review review) {
-        review.setTimeStamp(LocalDateTime.now());
-        return ResponseEntity.ok(reviewService.updateReview(reviewId, review));
+        Review updatedReview = reviewService.updateReview(reviewId, review);
+        return updatedReview != null ? ResponseEntity.ok(updatedReview) : ResponseEntity.notFound().build();
     }
 
     @DeleteMapping("/{reviewId}")
+    @PreAuthorize("isAuthenticated()")
     public ResponseEntity<Void> deleteReview(@PathVariable String reviewId) {
         reviewService.deleteReview(reviewId);
         return ResponseEntity.noContent().build();
@@ -51,5 +56,12 @@ public class ReviewController {
         return reviews.isEmpty() 
                 ? ResponseEntity.notFound().build() 
                 : ResponseEntity.ok(reviews);
+    }
+
+    @GetMapping("/{movieId}/{userId}")
+    @PreAuthorize("isAuthenticated()")
+    public ResponseEntity<Review> getUserReviewForMovie(@PathVariable String movieId, @PathVariable String userId) {
+        Optional<Review> review = reviewService.getUserReviewForMovie(movieId, userId);
+        return review.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 }

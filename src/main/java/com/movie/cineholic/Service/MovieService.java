@@ -10,9 +10,10 @@ public interface MovieService {
     Movie addMovie(Movie movie);
     Movie updateMovie(String movieId,Movie movie);
     void deleteMovie(String movieId);
-    Optional<Movie> getMovieById(String imdbId);
-    List<Movie> getMoviesByGenre(String genre);
+    Movie getMovieById(String movieId);
+    List<Movie> getMoviesByGenres(String genres);
     List<Movie> getMoviesByTitle(String title);
-    List<Movie> getMoviesWithRatingAbove(double rating);
-
+    List<Movie> getMoviesWithRatingAbove(double averageRating);
+    List<Movie> getTop10Movies();
+    List<Movie> getRecentlyReleasedMovie();  
 }

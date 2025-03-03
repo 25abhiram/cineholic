@@ -10,10 +10,13 @@ import com.movie.cineholic.Model.Movie;
 @Repository
 public interface MovieRepository extends MongoRepository<Movie, String> {
 
-    List<Movie> findByGenres(String genre);
+    List<Movie> findByGenresContainingIgnoreCase(String genres); 
+    List<Movie> findByTitleContainingIgnoreCase(String title);
+    List<Movie> findByAverageRatingGreaterThan(double averageRating);  
 
-    List<Movie> findByTitle(String title);
-
-    List<Movie> findByAverageRatingGreaterThan(double rating);
-
+    // Get top 5 movies sorted by rating (descending order)
+    List<Movie> findTop10ByOrderByAverageRatingDesc();
+   List<Movie> findTop10ByOrderByReleaseDateDesc(); // Fetch the latest released movie
+    
 }
+

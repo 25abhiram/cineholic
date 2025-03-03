@@ -49,14 +49,16 @@ public class MovieController {
        return ResponseEntity.noContent().build();
     }
 
-    @GetMapping("/genre/{genre}")
-    public ResponseEntity<List<Movie>> getMoviesByGenre(@PathVariable String genre) {
-        List<Movie> movies = movieService.getMoviesByGenre(genre);
+    @GetMapping("/genre/{genres}")
+    public ResponseEntity<List<Movie>> getMoviesByGenres(@PathVariable String genres) {
+        List<Movie> movies = movieService.getMoviesByGenres(genres);
 
         return (movies != null && !movies.isEmpty())
             ? ResponseEntity.ok(movies)
             : ResponseEntity.status(HttpStatus.NOT_FOUND).build();
     }
+
+    
 
     @GetMapping("/title/{title}")
     public ResponseEntity<List<Movie>> getMoviesByTitle(@PathVariable String title) {
@@ -67,10 +69,25 @@ public class MovieController {
             : ResponseEntity.status(HttpStatus.NOT_FOUND).build();
     }
 
-    @GetMapping("/rating/above")
-    public ResponseEntity<List<Movie>> getMoviesWithRatingAbove(@RequestParam double rating) {
-        List<Movie> movies = movieService.getMoviesWithRatingAbove(rating);
+
+    @GetMapping("/averageRating/{averageRating}")
+    public ResponseEntity<List<Movie>> getMoviesWithRatingAbove(@PathVariable double averageRating) {
+        List<Movie> movies = movieService.getMoviesWithRatingAbove(averageRating);
         return movies.isEmpty() ? ResponseEntity.notFound().build() : ResponseEntity.ok(movies);
     }
 
+
+     // Endpoint to get the top 5 movies
+     @GetMapping("/top10")
+     public ResponseEntity<List<Movie>> getTop10Movies() {
+         List<Movie> movies = movieService.getTop10Movies();
+         return ResponseEntity.ok(movies);
+
+    }  
+    @GetMapping("/recent")
+    public ResponseEntity<List<Movie>> getRecentlyReleasedMovie() {
+        List <Movie> movies = movieService.getRecentlyReleasedMovie();
+        return ResponseEntity.ok(movies);
+    }
+    
 }

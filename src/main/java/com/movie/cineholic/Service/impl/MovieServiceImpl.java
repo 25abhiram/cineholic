@@ -45,18 +45,31 @@ public class MovieServiceImpl implements MovieService {
     }
 
     @Override
-    public List<Movie> getMoviesByGenre(String genre) {
-        return movieRepository.findByGenres(genre);
-    }
+    public List<Movie> getMoviesByGenres(String genres) {
+    return movieRepository.findByGenresContainingIgnoreCase(genres);
+}
+
 
     @Override
     public List<Movie> getMoviesByTitle(String title) {
-        return movieRepository.findByTitle(title);
-    }
+    return movieRepository.findByTitleContainingIgnoreCase(title);
+}
 
-    @Override
-    public List<Movie> getMoviesWithRatingAbove(double rating) {
-        return movieRepository.findByAverageRatingGreaterThan(rating);
-    }
+@Override
+public List<Movie> getMoviesWithRatingAbove(double averageRating) {
+    return movieRepository.findByAverageRatingGreaterThan(averageRating);
+ }
+
+ @Override
+public List<Movie> getTop10Movies() {
+    return movieRepository.findTop10ByOrderByAverageRatingDesc();
+
+ }
+
+ @Override
+public List<Movie> getRecentlyReleasedMovie() {
+    return movieRepository.findTop10ByOrderByReleaseDateDesc();
+
+ }
 
 }

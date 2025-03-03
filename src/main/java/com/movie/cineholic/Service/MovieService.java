@@ -12,6 +12,7 @@ public interface MovieService {
     Movie getMovieById(String movieId);
     List<Movie> getMoviesByGenres(String genres);
     List<Movie> getMoviesByTitle(String title);
-    List<Movie> getMoviesWithRatingAbove(double rating);
-
+    List<Movie> getMoviesWithRatingAbove(double averageRating);
+    List<Movie> getTop10Movies();
+    List<Movie> getRecentlyReleasedMovie();  
 }

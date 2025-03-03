@@ -20,7 +20,7 @@ public class Movie {
     private String releaseDate;
     private String trailerLink;
     private String poster_path;
-    private String runTime;
+    private String runtime;
     private String budget;
     private String revenue;
     private List<String> genres;

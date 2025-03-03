@@ -57,8 +57,20 @@ public class MovieServiceImpl implements MovieService {
 }
 
 @Override
-public List<Movie> getMoviesWithRatingAbove(double rating) {
-    return movieRepository.findByAverageRatingGreaterThan(rating);
+public List<Movie> getMoviesWithRatingAbove(double averageRating) {
+    return movieRepository.findByAverageRatingGreaterThan(averageRating);
+ }
+
+ @Override
+public List<Movie> getTop10Movies() {
+    return movieRepository.findTop10ByOrderByAverageRatingDesc();
+
+ }
+
+ @Override
+public List<Movie> getRecentlyReleasedMovie() {
+    return movieRepository.findTop10ByOrderByReleaseDateDesc();
+
  }
 
 }

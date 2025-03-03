@@ -12,14 +12,23 @@ import java.time.LocalDateTime;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Document(collection = "reviews") 
+@Document(collection = "reviews")
 public class Review {
 
     @Id
-    private String reviewId; 
-    private String movieId;  
-    private String userId;   
-    private double rating;  
-    private String reviewText; 
-    private LocalDateTime timeStamp; 
+    private String reviewId;
+    private String movieId;
+    private String userId;
+    private String username;
+    private double rating;
+    private String reviewText;
+    private LocalDateTime timeStamp = LocalDateTime.now();
+
+    public Review(String movieId, String userId, String username, double rating, String reviewText) {
+        this.movieId = movieId;
+        this.userId = userId;
+        this.username = username;
+        this.rating = rating;
+        this.reviewText = reviewText;
+    }
 }

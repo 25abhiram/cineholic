@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class MovieServiceImpl implements MovieService {
@@ -25,13 +26,12 @@ public class MovieServiceImpl implements MovieService {
     }
 
     @Override
-    public Movie updateMovie(String movieId,Movie movie) {
-        if(movieRepository.existsById(movieId)) {
+    public Movie updateMovie(String movieId, Movie movie) {
+        if (movieRepository.existsById(movieId)) {
             movie.setMovieId(movieId);
         }
         return movieRepository.save(movie);
     }
-
 
     @Override
     public void deleteMovie(String movieId) {
@@ -40,9 +40,8 @@ public class MovieServiceImpl implements MovieService {
     }
 
     @Override
-    public Movie getMovieById(String movieId) {
-    return movieRepository.findById(movieId)
-            .orElseThrow(() -> new RuntimeException("Movie not found with ID: " + movieId));
+    public Optional<Movie> getMovieById(String movieId) {
+        return movieRepository.findById(movieId);
     }
 
     @Override
@@ -51,7 +50,7 @@ public class MovieServiceImpl implements MovieService {
 }
 
 
-@Override
+    @Override
     public List<Movie> getMoviesByTitle(String title) {
     return movieRepository.findByTitleContainingIgnoreCase(title);
 }

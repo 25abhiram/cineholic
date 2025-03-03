@@ -8,6 +8,7 @@ import java.util.List;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.DocumentReference;
 
 @Document(collection = "movies")
 @Data
@@ -18,17 +19,16 @@ public class Movie {
     private String movieId;
     private String title;
     private String releaseDate;
-    private String trailerLink;
-    private String poster_path;
+    private String trailerLink; //youtube link of movie trailer
+    private String poster_path; //images from website
+    private List<String> genres;
     private String runtime;
     private String budget;
     private String revenue;
-    private List<String> genres;
     private String description;
     private double averageRating;
-    private List<String> reviews;
+    @DocumentReference
+    private List<Review> reviewIds;
 
-
-
-
+  
 }

@@ -14,7 +14,7 @@ public interface MovieRepository extends MongoRepository<Movie, String> {
     List<Movie> findByTitleContainingIgnoreCase(String title);
     List<Movie> findByAverageRatingGreaterThan(double averageRating);  
 
-    // ✅ Get top 5 movies sorted by rating (descending order)
+    // Get top 5 movies sorted by rating (descending order)
     List<Movie> findTop10ByOrderByAverageRatingDesc();
    List<Movie> findTop10ByOrderByReleaseDateDesc(); // Fetch the latest released movie
     

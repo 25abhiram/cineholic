@@ -14,9 +14,10 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.logging.Logger;
 
 @RestController
-@RequestMapping("/api/recommendations") 
+@RequestMapping("/api/recommendations")
 public class RecommendationController {
 
     @Autowired
@@ -28,6 +29,8 @@ public class RecommendationController {
     @Autowired
     private MovieService movieService;
 
+    private static final Logger logger = Logger.getLogger(RecommendationController.class.getName());
+
     /**
      * Generate and return recommendations for a user based on their preferences (genres).
      */
@@ -36,11 +39,13 @@ public class RecommendationController {
         // Fetch the user details
         User user = userService.getUserById(userId);
         if (user == null) {
+            logger.warning("User not found: " + userId);
             return ResponseEntity.notFound().build();
         }
 
-        String[] genrePreferences = user.getPreferences(); // User's preferred genres
-        if (genrePreferences == null || genrePreferences.length == 0) {
+        List<String> genrePreferences = user.getPreferences(); // User's preferred genres
+        if (genrePreferences == null || genrePreferences.isEmpty()) {
+            logger.warning("No preferences set for user: " + userId);
             return ResponseEntity.badRequest().build(); // No preferences set
         }
 
@@ -57,14 +62,20 @@ public class RecommendationController {
 
         // If no movies found for preferences
         if (recommendedMovies.isEmpty()) {
+            logger.info("No movies found for user preferences: " + userId);
             return ResponseEntity.noContent().build();
         }
 
-        // Save recommendations to the database
-        Recommendation recommendation = new Recommendation();
-        recommendation.setUserId(userId);
+        // Save or update recommendations in the database
+        List<Recommendation> recommendations = recommendationService.getRecommendationsByUserId(userId);
+        Recommendation recommendation = recommendations.isEmpty() ? null : recommendations.get(0);
+        if (recommendation == null) {
+            recommendation = new Recommendation();
+            recommendation.setUserId(userId);
+        }
         recommendation.setRecommendedMovies(recommendedMovies.stream().map(Movie::getMovieId).collect(Collectors.toList()));
         recommendationService.saveRecommendation(recommendation);
+        logger.info("Recommendations saved for user: " + userId);
 
         return ResponseEntity.ok(recommendedMovies);
     }

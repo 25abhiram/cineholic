@@ -12,6 +12,8 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.List;
 import java.util.Optional;
 
@@ -99,10 +101,11 @@ public class ReviewServiceImpl implements ReviewService {
 
         double totalRating = reviews.stream().mapToDouble(Review::getRating).sum();
         double averageRating = reviews.isEmpty() ? 0 : totalRating / reviews.size();
+            BigDecimal roundedAverage = BigDecimal.valueOf(averageRating).setScale(1, RoundingMode.HALF_UP);
 
         mongoTemplate.update(Movie.class)
                 .matching(Criteria.where("movieId").is(movieId))
-                .apply(new Update().set("averageRating", averageRating))
+                .apply(new Update().set("averageRating", roundedAverage.doubleValue()))
                 .first();
     }
 

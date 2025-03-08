@@ -21,6 +21,7 @@ public class Movie {
     private String releaseDate;
     private String trailerLink; //youtube link of movie trailer
     private String poster_path; //images from website
+    private String backdrop;
     private List<String> genres;
     private String runtime;
     private String budget;
